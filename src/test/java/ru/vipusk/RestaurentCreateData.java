@@ -1,5 +1,7 @@
 package ru.vipusk;
 
+
+
 import ru.vipusk.model.Admin;
 import ru.vipusk.model.Menu;
 import ru.vipusk.model.Restaurant;
@@ -8,26 +10,26 @@ import ru.vipusk.rest.RestRestaurant;
 
 public class RestaurentCreateData {
 
+ private  RestRestaurant restRestaurant;
 
-    RestRestaurant restRestaurant = new RestRestaurant();
-
-
-    Admin FEDIA = new Admin(100006, "Федя");
-    Admin JORA = new Admin(100007, "Жера");
-
-    User KOLYA = new User(100011, "Коля");
-    User VASYA = new User(100012, "Вася");
-    User PETYA = new User(100013, "Петя");
-
-    public RestaurentCreateData( ) {
-
+    public RestaurentCreateData(RestRestaurant restRestaurant) {
+        this.restRestaurant = restRestaurant;
     }
+
+
+
+
 
     public RestRestaurant getRestRestaurant() {
         return restRestaurant;
     }
 
-    {
+    {Admin FEDIA = new Admin(100006, "Федя");
+        Admin JORA = new Admin(100007, "Жера");
+
+        User KOLYA = new User(100011, "Коля");
+        User VASYA = new User(100012, "Вася");
+        User PETYA = new User(100013, "Петя");
         restRestaurant.createRestaurant(new Restaurant(100000, "Кристал"));
         restRestaurant.createRestaurant(new Restaurant(100001, "Бердянск"));
         restRestaurant.createRestaurant(new Restaurant(100002, "Седьмое Небо"));

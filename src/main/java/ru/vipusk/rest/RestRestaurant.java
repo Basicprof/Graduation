@@ -2,6 +2,8 @@ package ru.vipusk.rest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.vipusk.model.Menu;
 import ru.vipusk.model.Restaurant;
 import ru.vipusk.model.User;
@@ -12,10 +14,17 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static ru.vipusk.model.util.ValidationUtil.checkNotFoundWithId;
-
+@Service
 public class RestRestaurant {
     private static final Logger LOG = LoggerFactory.getLogger(RestRestaurant.class);
-    private RepositoryMenagerRestaurant repositoryMenagerRestaurant = new RepositoryMenagerRestaurant();
+
+    private final RepositoryMenagerRestaurant repositoryMenagerRestaurant;
+
+
+    @Autowired
+    public RestRestaurant(RepositoryMenagerRestaurant repositoryMenagerRestaurant) {
+        this.repositoryMenagerRestaurant = repositoryMenagerRestaurant;
+    }
 
 
     public void newVote(Integer idRest) {

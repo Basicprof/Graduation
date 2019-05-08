@@ -1,5 +1,7 @@
 package ru.vipusk.repository;
 
+
+import org.springframework.stereotype.Repository;
 import ru.vipusk.model.Menu;
 import ru.vipusk.model.Restaurant;
 import ru.vipusk.model.User;
@@ -10,6 +12,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+@Repository
 public class RepositoryMenagerRestaurant {
 
 
@@ -54,7 +57,7 @@ public class RepositoryMenagerRestaurant {
 
         for (int i = 0; i < users.size(); i++) {
             if (users.get(getIndexUser(idUser)).getId() == idUser) {
-                if (LocalTime.now().getHour() < 19.00) {
+                if (LocalTime.now().getHour() < 23.00) {
                     if (!users.get(getIndexUser(idUser)).isNew()) {
                         restaurants.get(getIndexRest(idRest)).incrementVoting();
                         users.get(getIndexUser(idUser)).setVotingToDey(true);
