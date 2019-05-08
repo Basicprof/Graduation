@@ -1,4 +1,4 @@
-package ru.vipusk.repository;
+package ru.vipusk.repository.mock;
 
 
 import org.springframework.stereotype.Repository;

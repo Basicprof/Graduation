@@ -16,11 +16,7 @@ public class RestaurentCreateData {
         this.restRestaurant = restRestaurant;
     }
 
-
-
-
-
-    public RestRestaurant getRestRestaurant() {
+   public RestRestaurant getRestRestaurant() {
         return restRestaurant;
     }
 

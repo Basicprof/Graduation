@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.vipusk.model.Admin;
 import ru.vipusk.model.Menu;
@@ -22,9 +24,10 @@ import java.util.List;
 
 
 @ContextConfiguration({
-        "classpath:spring/spring-app.xml"
+        "classpath:spring/inmemory.xml"
 })
 @RunWith(SpringRunner.class)
+@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 public class RestRestaurantTest {
 
     @Autowired

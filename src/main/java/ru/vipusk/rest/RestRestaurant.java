@@ -8,21 +8,22 @@ import ru.vipusk.model.Menu;
 import ru.vipusk.model.Restaurant;
 import ru.vipusk.model.User;
 import ru.vipusk.model.util.SecurityUtil;
-import ru.vipusk.repository.RepositoryMenagerRestaurant;
+import ru.vipusk.repository.jpa.JpaRepositoryMenagerRestaurant;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import static ru.vipusk.model.util.ValidationUtil.checkNotFoundWithId;
+
 @Service
 public class RestRestaurant {
     private static final Logger LOG = LoggerFactory.getLogger(RestRestaurant.class);
 
-    private final RepositoryMenagerRestaurant repositoryMenagerRestaurant;
+    private final JpaRepositoryMenagerRestaurant repositoryMenagerRestaurant;
 
 
     @Autowired
-    public RestRestaurant(RepositoryMenagerRestaurant repositoryMenagerRestaurant) {
+    public RestRestaurant(JpaRepositoryMenagerRestaurant repositoryMenagerRestaurant) {
         this.repositoryMenagerRestaurant = repositoryMenagerRestaurant;
     }
 

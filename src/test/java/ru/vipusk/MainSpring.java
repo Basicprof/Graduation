@@ -2,7 +2,7 @@ package ru.vipusk;
 
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.vipusk.repository.RepositoryMenagerRestaurant;
+import ru.vipusk.repository.mock.RepositoryMenagerRestaurant;
 import ru.vipusk.rest.RestRestaurant;
 
 import java.util.Arrays;
