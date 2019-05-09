@@ -5,6 +5,9 @@ public class User extends AbstractNameEntity {
 
     private boolean isVotingToDey;
 
+    public User() {
+    }
+
     public boolean isNew() {
         return isVotingToDey;
     }

@@ -9,19 +9,21 @@ public class Menu extends AbstractIdEntity {
 
     private AtomicInteger voting = new AtomicInteger(0);
     private Map<String, Integer> dishs = new HashMap<>();
-    private Admin admin;
+    private User admin;
 
     public Menu(Integer id) {
         super(id);
-     }
-    public Menu( ) {
-        super( );
     }
-    public Admin getAdmin() {
+
+    public Menu() {
+
+    }
+
+    public User getAdmin() {
         return admin;
     }
 
-    public void setAdmin(Admin admin) {
+    public void setAdmin(User admin) {
         this.admin = admin;
     }
 
@@ -45,8 +47,9 @@ public class Menu extends AbstractIdEntity {
     public void setDishs(String name, Integer cash) {
         this.dishs.put(name, cash);
     }
-   public void clear(){
+
+    public void clear() {
         dishs.clear();
-   }
+    }
 
 }

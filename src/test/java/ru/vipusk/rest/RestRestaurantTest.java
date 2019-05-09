@@ -4,12 +4,11 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.vipusk.model.Admin;
 import ru.vipusk.model.Menu;
 import ru.vipusk.model.Restaurant;
 import ru.vipusk.model.User;
@@ -27,20 +26,38 @@ import java.util.List;
         "classpath:spring/inmemory.xml"
 })
 @RunWith(SpringRunner.class)
-@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
+//@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 public class RestRestaurantTest {
+ private static final Logger LOG = LoggerFactory.getLogger(RestRestaurantTest.class);
+    static {
 
+     MENU_1.setDishs("Картошка фри", 155);
+     MENU_1.setDishs("Суп с фрикадельками", 128);
+     MENU_1.setDishs("Пантиока Заморская", 100);
+     MENU_1.setAdmin(FEDIA);
+     MENU_2.setDishs("Борщ Украинский", 165);
+     MENU_2.setDishs("Вареники с Вищнями", 111);
+     MENU_2.setDishs("Запеканка", 102);
+     MENU_2.setAdmin(JORA);
+     MENU_3.setDishs("Суп Харчо", 154);
+     MENU_3.setDishs("Драники", 122);
+     MENU_3.setDishs("Утка пекинская", 104);
+     MENU_3.setAdmin(FEDIA);
+     MENU_4.setDishs("Суп с фрикаедльками", 148);
+     MENU_4.setDishs("Гуляш с пюре", 132);
+     MENU_4.setDishs("Салат Весенний", 99);
+     MENU_4.setAdmin(JORA);
+     MENU_5.setDishs("Щи Русские", 147);
+     MENU_5.setDishs("Пельмени Сибирские", 124);
+     MENU_5.setDishs("Венегрет", 105);
+     MENU_5.setAdmin(JORA);
+ }
     @Autowired
     RestRestaurant restRestaurant;
 
     @Before
     public void setUp() throws Exception {
-        Admin FEDIA = new Admin(100006, "Федя");
-        Admin JORA = new Admin(100007, "Жера");
-
-        User KOLYA = new User(100011, "Коля");
-        User VASYA = new User(100012, "Вася");
-        User PETYA = new User(100013, "Петя");
+    restRestaurant.clear();
         restRestaurant.createRestaurant(new Restaurant(100000, "Кристал"));
         restRestaurant.createRestaurant(new Restaurant(100001, "Бердянск"));
         restRestaurant.createRestaurant(new Restaurant(100002, "Седьмое Небо"));
@@ -49,38 +66,48 @@ public class RestRestaurantTest {
         restRestaurant.setUser(KOLYA);
         restRestaurant.setUser(VASYA);
         restRestaurant.setUser(PETYA);
+        restRestaurant.setUser(JORA);
+        restRestaurant.setUser(FEDIA);
+        restRestaurant.createMenu(100000, MENU_1);
+        restRestaurant.createMenu(100001, MENU_2);
+        restRestaurant.createMenu(100002, MENU_3);
+        restRestaurant.createMenu(100003, MENU_4);
+        restRestaurant.createMenu(100004, MENU_5);
+        SecurityUtil.setAuthUserId(100011);
+        restRestaurant.newVote(100000);
+        SecurityUtil.setAuthUserId(100011);
+        restRestaurant.newVote(100001);
+        SecurityUtil.setAuthUserId(100011);
+        restRestaurant.newVote(100002);
+        SecurityUtil.setAuthUserId(100011);
+        restRestaurant.newVote(100003);
+        SecurityUtil.setAuthUserId(100011);
+        restRestaurant.newVote(100004);
+        SecurityUtil.setAuthUserId(100011);
 
-        Menu menu_1 = new Menu(100014);
-        menu_1.setDishs("Картошка фри", 155);
-        menu_1.setDishs("Суп с фрикадельками", 128);
-        menu_1.setDishs("Пантиока Заморская", 100);
-        menu_1.setAdmin(FEDIA);
-        Menu menu_2 = new Menu(100015);
-        menu_2.setDishs("Борщ Украинский", 165);
-        menu_2.setDishs("Вареники с Вищнями", 111);
-        menu_2.setDishs("Запеканка", 102);
-        menu_2.setAdmin(JORA);
-        Menu menu_3 = new Menu(100016);
-        menu_3.setDishs("Суп Харчо", 154);
-        menu_3.setDishs("Драники", 122);
-        menu_3.setDishs("Утка пекинская", 104);
-        menu_3.setAdmin(FEDIA);
-        Menu menu_4 = new Menu(100017);
-        menu_4.setDishs("Суп с фрикаедльками", 148);
-        menu_4.setDishs("Гуляш с пюре", 132);
-        menu_4.setDishs("Салат Весенний", 99);
-        menu_4.setAdmin(JORA);
-        Menu menu_5 = new Menu(100018);
-        menu_4.setDishs("Щи Русские", 147);
-        menu_4.setDishs("Пельмени Сибирские", 124);
-        menu_4.setDishs("Венегрет", 105);
-        menu_4.setAdmin(JORA);
+        restRestaurant.newVote(100000);
+        SecurityUtil.setAuthUserId(100012);
+        restRestaurant.newVote(100001);
+        SecurityUtil.setAuthUserId(100012);
+        restRestaurant.newVote(100002);
+        SecurityUtil.setAuthUserId(100012);
+        restRestaurant.newVote(100003);
 
-        restRestaurant.createMenu(100000, menu_1);
-        restRestaurant.createMenu(100001, menu_2);
-        restRestaurant.createMenu(100002, menu_3);
-        restRestaurant.createMenu(100003, menu_4);
-        restRestaurant.createMenu(100004, menu_5);
+        SecurityUtil.setAuthUserId(100013);
+        restRestaurant.newVote(100000);
+        SecurityUtil.setAuthUserId(100013);
+        restRestaurant.newVote(100001);
+        SecurityUtil.setAuthUserId(100013);
+        restRestaurant.newVote(100002);
+        SecurityUtil.setAuthUserId(100013);
+
+        restRestaurant.newVote(100000);
+        SecurityUtil.setAuthUserId(100013);
+        restRestaurant.newVote(100001);
+
+        SecurityUtil.setAuthUserId(100011);
+        restRestaurant.newVote(100000);
+
     }
 
 
@@ -104,8 +131,8 @@ public class RestRestaurantTest {
 
     @Test
     public void getAll() {
-        List<Restaurant> RESTRESTAURANTLIST = restRestaurant.getAll();
-        assertThat(RESTRESTAURANTLIST).isEqualTo(RESTAURANTLIST);
+        List<Restaurant> restrestaurantlist = restRestaurant.getAll();
+        assertThat(restrestaurantlist).isEqualTo(RESTAURANTLIST);
     }
 
     @Test

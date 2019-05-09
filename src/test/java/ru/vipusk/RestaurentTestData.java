@@ -1,6 +1,5 @@
 package ru.vipusk;
 
-import ru.vipusk.model.Admin;
 import ru.vipusk.model.Menu;
 import ru.vipusk.model.Restaurant;
 import ru.vipusk.model.User;
@@ -12,8 +11,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RestaurentTestData {
 
- public static final Admin FEDIA = new Admin(100006, "Федя");
-    public static final Admin JORA = new Admin(100007, "Жера");
+ public static final User FEDIA = new User(100006, "Федя");
+    public static final User JORA = new User(100007, "Жера");
 
     public static final User KOLYA = new User(100011, "Коля");
     public static final User VASYA = new User(100012, "Вася");

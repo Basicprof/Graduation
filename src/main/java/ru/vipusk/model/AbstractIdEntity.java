@@ -1,6 +1,5 @@
 package ru.vipusk.model;
 
-import java.util.Objects;
 
 public abstract class AbstractIdEntity {
 
