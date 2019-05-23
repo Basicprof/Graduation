@@ -11,7 +11,8 @@
 
     <!-- Change DB by comment/uncomment property-placeholder -->
 
-    <context:property-placeholder location="classpath:db/hsqldb.properties" system-properties-mode="OVERRIDE"/>
+    <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>
+    <!--<context:property-placeholder location="classpath:db/hsqldb.properties" system-properties-mode="OVERRIDE"/>-->
 
     <context:component-scan base-package="ru.vipusk.**.repository.jpa"/>
 
@@ -31,7 +32,7 @@
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"
-          p:packagesToScan="ru.javawebinar.**.model">
+          p:packagesToScan="ru.vipusk.**.model">
         <!--p:persistenceUnitName="persistenceUnit">-->
 
         <property name="jpaPropertyMap">
@@ -56,5 +57,5 @@
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
           p:entityManagerFactory-ref="entityManagerFactory"/>
 
-    -->
+
 </beans>

@@ -6,9 +6,7 @@
 
     <!--<bean class="ru.vipusk.repository.mock.RepositoryMenagerRestaurant" id="repositoryMenagerRestaurant"/>-->
     <context:annotation-config/>
-    <context:component-scan base-package="ru.vipusk.**.repository.mock"/>
     <context:component-scan base-package="ru.vipusk.**.rest"/>
-    <context:component-scan base-package="ru.vipusk"/>
-
+    <context:component-scan base-package="ru.vipusk.model"/>
 
 </beans>
