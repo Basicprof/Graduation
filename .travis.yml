@@ -1,6 +1,6 @@
 # https://docs.travis-ci.com/user/languages/java/
 language: java
-jdk: oraclejdk8
+jdk: openjdk8
 
 #https://dzone.com/articles/travis-ci-tutorial-java-projects
 cache:
@@ -9,8 +9,8 @@ cache:
 
 # https://docs.travis-ci.com/user/database-setup/#PostgreSQL
 before_script:
-- hsqldb -c 'create database graduation' -U postgres
-- hsqldb -c 'create user "user"; grant all privileges on database graduation to "user"' -U hsqldb
+- psql -c 'create database topjava' -U postgres
+- psql -c 'create user "user"; grant all privileges on database topjava to "user"' -U postgres
 
 # https://docs.travis-ci.com/user/customizing-the-build#Building-Specific-Branches
 branches:
